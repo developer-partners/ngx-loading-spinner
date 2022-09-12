@@ -1,24 +1,59 @@
-# NgxLoadingSpinner
+# @developer-partners/ngx-loading-spinner
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.14.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
 
-## Code scaffolding
+## Basic Usage
 
-Run `ng generate component component-name --project ngx-loading-spinner` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-loading-spinner`.
-> Note: Don't forget to add `--project ngx-loading-spinner` or else it will be added to the default project in your `angular.json` file. 
+1. Install the library
 
-## Build
+```
+npm install @developer-partners/ngx-loading-spinner
+```
 
-Run `ng build ngx-loading-spinner` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. Import in your module:
 
-## Publishing
+```
+import { LoadingSpinnerModule } from '@developer-partners/ngx-loading-spinner';
 
-After building your library with `ng build ngx-loading-spinner`, go to the dist folder `cd dist/ngx-loading-spinner` and run `npm publish`.
+@NgModule({
+  imports: [
+    LoadingSpinnerModule
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-## Running unit tests
+3. Use it in HTML (isLoading should be a public booolean property in your component)
 
-Run `ng test ngx-loading-spinner` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+<dp-loading-spinner *ngIf="isLoading" message="Loading, please wait.."></dp-loading-spinner>
+```
 
-## Further help
+## Advanced Configuration
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The loading spinner component comes with a default spinner. If you need to replace it with your own spinner, you can just replace our default provider
+
+```
+import { LoadingSpinnerModule } from '@developer-partners/ngx-loading-spinner';
+
+@NgModule({
+  imports: [
+    LoadingSpinnerModule
+  ],
+  providers: [
+    {
+      provide: LoadingSpinnerConfig,
+      useFactory: () => {
+        return {
+          component: YourCustomSpinnerComponent
+        }
+      }
+    }
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+The YourCustomSpinnerComponent in the example above should contain the custom HTML and CSS for your own loading spinner.
