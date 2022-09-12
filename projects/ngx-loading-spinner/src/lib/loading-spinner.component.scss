@@ -1,0 +1,17 @@
+.dp-spinner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 500;
+    background-color: #fff;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.dp-spinner-container p {
+    font-size: 18px;
+}
