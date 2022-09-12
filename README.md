@@ -1,27 +1,59 @@
-# NgxLoadingSpinner
+# @developer-partners/ngx-loading-spinner
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
 
-## Development server
+## Basic Usage
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Install the library
 
-## Code scaffolding
+```
+npm install @developer-partners/ngx-loading-spinner
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. Import in your module:
 
-## Build
+```
+import { LoadingSpinnerModule } from '@developer-partners/ngx-loading-spinner';
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+@NgModule({
+  imports: [
+    LoadingSpinnerModule
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-## Running unit tests
+3. Use it in HTML (isLoading should be a public booolean property in your component)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+<dp-loading-spinner *ngIf="isLoading" message="Loading, please wait.."></dp-loading-spinner>
+```
 
-## Running end-to-end tests
+## Advanced Configuration
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+The loading spinner component comes with a default spinner. If you need to replace it with your own spinner, you can just replace our default provider
 
-## Further help
+```
+import { LoadingSpinnerModule } from '@developer-partners/ngx-loading-spinner';
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+@NgModule({
+  imports: [
+    LoadingSpinnerModule
+  ],
+  providers: [
+    {
+      provide: LoadingSpinnerConfig,
+      useFactory: () => {
+        return {
+          component: YourCustomSpinnerComponent
+        }
+      }
+    }
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+The YourCustomSpinnerComponent in the example above should contain the custom HTML and CSS for your own loading spinner.
