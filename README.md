@@ -57,3 +57,12 @@ export class AppModule { }
 ```
 
 The YourCustomSpinnerComponent in the example above should contain the custom HTML and CSS for your own loading spinner.
+
+---
+## Credits
+Developer Partners, Inc.
+
+[https://developerpartners.com](https://developerpartners.com)
+
+## License
+[Apache License 2.0](https://github.com/developer-partners/ngx-loading-spinner/blob/main/LICENSE.md)
