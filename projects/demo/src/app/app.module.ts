@@ -17,14 +17,14 @@ import { OverrideSpinnerComponent } from './override-spinner/override-spinner.co
     LoadingSpinnerModule
   ],
   providers: [
-    {
-      provide: LoadingSpinnerConfig,
-      useFactory: () => {
-        return {
-          component: OverrideSpinnerComponent
-        }
-      }
-    }
+    // {
+    //   provide: LoadingSpinnerConfig,
+    //   useFactory: () => {
+    //     return {
+    //       component: OverrideSpinnerComponent
+    //     }
+    //   }
+    // }
   ],
   bootstrap: [AppComponent]
 })
