@@ -5,34 +5,34 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "strict": false,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
+    "paths": {
+      "ngx-loading-spinner": [
+        "dist/ngx-loading-spinner"
+      ]
+    },
     "declaration": false,
     "downlevelIteration": true,
-    "paths": {
-      // "ngx-loading-spinner": [
-      //   "dist/ngx-loading-spinner/ngx-loading-spinner",
-      //   "dist/ngx-loading-spinner",
-      //   "dist/ngx-loading-spinner/ngx-loading-spinner",
-      //   "dist/ngx-loading-spinner"
-      // ]
-    },
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2020",
     "module": "es2020",
     "lib": [
-      "es2018",
+      "es2020",
       "dom"
     ]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
-    // "strictInjectionParameters": false,
-    // "strictInputAccessModifiers": false,
-    // "strictTemplates": false
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true,
+    "enableIvy": false
   }
 }
