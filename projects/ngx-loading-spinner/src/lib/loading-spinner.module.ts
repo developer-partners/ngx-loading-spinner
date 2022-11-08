@@ -13,7 +13,6 @@ import { LoadingSpinnerComponent } from './loading-spinner.component';
   ],
   imports: [
     CommonModule,
-    BrowserModule
   ],
   exports: [
     LoadingSpinnerComponent,
