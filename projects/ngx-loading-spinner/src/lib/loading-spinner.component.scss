@@ -16,3 +16,13 @@
     font-size: 18px;
     margin-top: 10px;
 }
+
+.dp-spinner-parent,
+[dp-spinner-parent] {
+    position: relative;
+    min-height: 100px;
+
+    .dp-spinner-container {
+        position: absolute;
+    }
+}
