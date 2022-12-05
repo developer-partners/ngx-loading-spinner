@@ -70,7 +70,8 @@
             "styles": [
               "projects/demo/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "optimization": false
           },
           "configurations": {
             "production": {
