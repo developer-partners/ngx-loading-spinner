@@ -21,6 +21,6 @@ export class LoadingSpinnerComponent {
         private readonly _spinnerConfig: LoadingSpinnerConfig,
         public readonly injector: Injector
     ) {
-
+        this.message = _spinnerConfig.defaultMessage;
     }
 }

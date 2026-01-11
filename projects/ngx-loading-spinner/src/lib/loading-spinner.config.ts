@@ -5,5 +5,6 @@ import { DefaultSpinnerComponent } from "./default-spinner.component";
     providedIn: 'root'
 })
 export class LoadingSpinnerConfig {
-    public component: Type<any> = DefaultSpinnerComponent
+    public component: Type<any> = DefaultSpinnerComponent;
+    public defaultMessage?: string;
 }
