@@ -1,10 +1,17 @@
-import { AfterViewInit, Directive, ElementRef, HostListener } from "@angular/core";
+import { AfterContentInit, ContentChildren, Directive, ElementRef, HostListener, OnDestroy, QueryList } from "@angular/core";
+import { Subscription } from "rxjs";
+import { LoadingSpinnerComponent } from "./loading-spinner.component";
 
 @Directive({
     selector: '[dp-spinner-parent],.dp-spinner-parent'
 })
-export class SpinnerParentDirective implements AfterViewInit {
+export class SpinnerParentDirective implements AfterContentInit, OnDestroy {
     private _spinners?: NodeListOf<HTMLElement>
+
+    @ContentChildren(LoadingSpinnerComponent, { descendants: true })
+    private _spinnerComponents!: QueryList<LoadingSpinnerComponent>;
+
+    private _changesSub?: Subscription;
 
     constructor(private readonly _element: ElementRef<HTMLElement>) {
 
@@ -24,7 +31,16 @@ export class SpinnerParentDirective implements AfterViewInit {
         }
     }
 
-    public ngAfterViewInit(): void {
+    public ngAfterContentInit(): void {
+        this.refreshSpinners();
+        this._changesSub = this._spinnerComponents.changes.subscribe(() => this.refreshSpinners());
+    }
+
+    public ngOnDestroy(): void {
+        this._changesSub?.unsubscribe();
+    }
+
+    private refreshSpinners(): void {
         this._spinners = this._element.nativeElement.querySelectorAll('.dp-spinner-container');
         this.adjustSpinnerLocations();
     }

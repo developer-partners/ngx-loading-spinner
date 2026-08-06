@@ -2,8 +2,12 @@
   <dp-loading-spinner></dp-loading-spinner>
 </div>
 
-<!-- <div dp-spinner-parent style="height: 600px; overflow-y: auto;">
+<!-- <button type="button" (click)="isLoading = !isLoading">
+  Toggle Loading
+</button>
+
+<div dp-spinner-parent style="height: 600px; overflow-y: auto;">
   <div style="height: 1200px; overflow-y: auto;">
-    <dp-loading-spinner message="Loading, please wait"></dp-loading-spinner>
+    <dp-loading-spinner *ngIf="isLoading" message="Loading, please wait"></dp-loading-spinner>
   </div>
 </div> -->
