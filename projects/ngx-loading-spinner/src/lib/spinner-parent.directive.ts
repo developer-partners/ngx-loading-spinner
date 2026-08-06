@@ -1,17 +1,11 @@
-import { AfterContentInit, ContentChildren, Directive, ElementRef, HostListener, OnDestroy, QueryList } from "@angular/core";
-import { Subscription } from "rxjs";
-import { LoadingSpinnerComponent } from "./loading-spinner.component";
+import { AfterViewInit, Directive, ElementRef, HostListener, OnDestroy } from "@angular/core";
 
 @Directive({
     selector: '[dp-spinner-parent],.dp-spinner-parent'
 })
-export class SpinnerParentDirective implements AfterContentInit, OnDestroy {
+export class SpinnerParentDirective implements AfterViewInit, OnDestroy {
     private _spinners?: NodeListOf<HTMLElement>
-
-    @ContentChildren(LoadingSpinnerComponent, { descendants: true })
-    private _spinnerComponents!: QueryList<LoadingSpinnerComponent>;
-
-    private _changesSub?: Subscription;
+    private _observer?: MutationObserver;
 
     constructor(private readonly _element: ElementRef<HTMLElement>) {
 
@@ -31,13 +25,15 @@ export class SpinnerParentDirective implements AfterContentInit, OnDestroy {
         }
     }
 
-    public ngAfterContentInit(): void {
+    public ngAfterViewInit(): void {
         this.refreshSpinners();
-        this._changesSub = this._spinnerComponents.changes.subscribe(() => this.refreshSpinners());
+
+        this._observer = new MutationObserver(() => this.refreshSpinners());
+        this._observer.observe(this._element.nativeElement, { childList: true, subtree: true });
     }
 
     public ngOnDestroy(): void {
-        this._changesSub?.unsubscribe();
+        this._observer?.disconnect();
     }
 
     private refreshSpinners(): void {
